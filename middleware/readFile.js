@@ -11,6 +11,16 @@ const readHtml = (req, res, next) => {
         })
 }
 
+
+const readUsers = (req, res, next) => {
+    fs.readFile(createPath('db', 'users.json'), 'utf-8')
+        .then((data) => {
+            res.locals.users = JSON.parse(data)
+            next()
+        })
+}
+
 module.exports = {
-    readHtml
+    readHtml,
+    readUsers
 }
